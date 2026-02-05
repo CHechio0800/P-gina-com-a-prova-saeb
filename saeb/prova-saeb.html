@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Saeb 💜</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap">
+    <style>
+        :root {
+            --lilac-soft: #E6D9F2;
+            --lilac-medium: #D4B5F0;
+            --purple-light: #B794E6;
+            --purple-medium: #9B6DD6;
+            --purple-deep: #7B4BC4;
+            --purple-dark: #5A2E94;
+            --white: #FFFFFF;
+            --success: #4CAF50;
+            --error: #F44336;
+            --shadow: rgba(123, 75, 196, 0.15);
+            --shadow-strong: rgba(123, 75, 196, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #E6D9F2 0%, #D4B5F0 25%, #B794E6 50%, #9B6DD6 75%, #7B4BC4 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Floating decorations */
+        .decoration {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .decoration:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            background: var(--lilac-soft);
+            top: 10%;
+            left: 5%;
+        }
+
+        .decoration:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            background: var(--purple-light);
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .decoration:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            background: var(--purple-medium);
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+            }
+            50% {
+                transform: translateY(-20px) translateX(15px);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header com cronômetro */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px var(--shadow);
+            text-align: center;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--purple-medium), var(--purple-deep));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: var(--purple-deep);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px var(--shadow);
+        }
+
+        .timer {
+            font-size: 1.5em;
+            color: var(--purple-medium);
+            font-weight: 700;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .timer-icon {
+            font-size: 1.2em;
+        }
+
+        /* Questions */
+        .question-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px var(--shadow);
+            animation: slideUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .question-card:nth-child(1) { animation-delay: 0.1s; }
+        .question-card:nth-child(2) { animation-delay: 0.15s; }
+        .question-card:nth-child(3) { animation-delay: 0.2s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-medium));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .question-title {
+            color: var(--purple-dark);
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .question-text {
+            color: var(--purple-dark);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--lilac-soft);
+            border: 2px solid var(--lilac-medium);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option:hover {
+            background: var(--lilac-medium);
+            border-color: var(--purple-light);
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--purple-medium);
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            color: var(--purple-dark);
+            font-weight: 500;
+        }
+
+        /* Feedback styles */
+        .option.correct {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-color: var(--success);
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+            border-color: var(--error);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border: 2px solid var(--success);
+            color: #2E7D32;
+        }
+
+        .feedback.incorrect {
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+            border: 2px solid var(--error);
+            color: #C62828;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback-icon {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        .feedback-title {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        /* Submit Button */
+        .submit-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .submit-btn {
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--purple-medium), var(--purple-deep));
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--shadow-strong);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Results Modal */
+        .results-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(123, 75, 196, 0.95);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .results-modal.show {
+            display: flex;
+        }
+
+        .results-content {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .results-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-deep));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 60px;
+            box-shadow: 0 15px 40px var(--shadow);
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .results-title {
+            font-family: 'Pacifico', cursive;
+            color: var(--purple-deep);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .results-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--lilac-soft), var(--lilac-medium));
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .stat-label {
+            color: var(--purple-medium);
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            color: var(--purple-dark);
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .retry-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--purple-medium), var(--purple-deep));
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--shadow-strong);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .question-card {
+                padding: 20px;
+            }
+
+            .results-content {
+                padding: 30px 20px;
+            }
+
+            .results-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decoration"></div>
+    <div class="decoration"></div>
+    <div class="decoration"></div>
+
+    <div class="container">
+        <!-- Header com cronômetro -->
+        <div class="header">
+            <div class="header-icon">📝</div>
+            <h1>Prova Saeb</h1>
+            <p style="color: var(--purple-medium); font-weight: 600; font-size: 1.1em;">
+                Responda todas as questões com atenção! 💜
+            </p>
+            <div class="timer">
+                <span class="timer-icon">⏱️</span>
+                <span id="timerDisplay">00:00</span>
+            </div>
+        </div>
+
+        <!-- Formulário de questões -->
+        <form id="provaForm">
+            <!-- Questão 1 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">1</div>
+                    <div class="question-title">Documentação Técnica</div>
+                </div>
+                <div class="question-text">
+                    Um analista de sistemas está trabalhando em um projeto de implantação de um novo sistema web. Ele deve aplicar seus conhecimentos em serviços de implantação de sistemas e documentação técnica. Baseando-se neste contexto, o analista precisa documentar:
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q1" value="a" id="q1a">
+                        <label for="q1a">a) todo o código fonte do sistema.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="b" id="q1b">
+                        <label for="q1b">b) todas as funções do sistema, além de erros e exceções.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="c" id="q1c">
+                        <label for="q1c">c) funções principais do sistema, sendo irrelevante relatar erros e exceções.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="d" id="q1d">
+                        <label for="q1d">d) processo de instalação do sistema, sendo irrelevante relatar erros e exceções.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="e" id="q1e">
+                        <label for="q1e">e) erros e exceções do sistema, sendo irrelevantes outras funcionalidades do sistema.</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback1"></div>
+            </div>
+
+            <!-- Questão 2 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">2</div>
+                    <div class="question-title">Protocolo MQTT</div>
+                </div>
+                <div class="question-text">
+                    O desenvolvedor analisou as conexões de hardware e está tudo correto. Agora, será necessário identificar se os comandos do protocolo MQTT no broker estão corretos. O comando que publica o dado "temperatura" no broker para o setor que está com falha [Adm] é:
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q2" value="a" id="q2a">
+                        <label for="q2a">a) PUBLISH Temp=21°C em "Adm"</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="b" id="q2b">
+                        <label for="q2b">b) PUBLISH Temp=21°C em "Rh"</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="c" id="q2c">
+                        <label for="q2c">c) UNSUBSCRIBE tópico "Adm"</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="d" id="q2d">
+                        <label for="q2d">d) SUBSCRIBE tópico "Adm"</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="e" id="q2e">
+                        <label for="q2e">e) SUBSCRIBE tópico "Rh"</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback2"></div>
+            </div>
+
+            <!-- Questão 3 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">3</div>
+                    <div class="question-title">Desenvolvimento IoT</div>
+                </div>
+                <div class="question-text">
+                    Um desenvolvedor de software foi encarregado de criar um sistema IoT. Ele escolheu uma linguagem de programação com recursos adequados, levando em consideração a conectividade de hardware e software, a robótica e os microcontroladores envolvidos no projeto. A linguagem escolhida deve ser:
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q3" value="a" id="q3a">
+                        <label for="q3a">a) de baixo nível para melhor controle sobre o hardware.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="b" id="q3b">
+                        <label for="q3b">b) voltada para desenvolvimento web e aplicações móveis.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="c" id="q3c">
+                        <label for="q3c">c) baseada em blocos gráficos para facilitar o desenvolvimento.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="d" id="q3d">
+                        <label for="q3d">d) específica para processamento de texto e manipulação de dados.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="e" id="q3e">
+                        <label for="q3e">e) de alto nível com suporte a bibliotecas específicas para IoT e microcontroladores.</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback3"></div>
+            </div>
+
+            <!-- Questão 4 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">4</div>
+                    <div class="question-title">Planejamento de Banco de Dados</div>
+                </div>
+                <div class="question-text">
+                    O primeiro passo é o planejamento do banco de dados, tendo em vista questões como entrevistas com pessoas envolvidas, validação de dados com o cliente, performance e futuras manutenções. A primeira etapa para realizar essa tarefa é fazer:
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q4" value="a" id="q4a">
+                        <label for="q4a">a) um projeto físico.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="b" id="q4b">
+                        <label for="q4b">b) um projeto lógico.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="c" id="q4c">
+                        <label for="q4c">c) análise de requisitos.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="d" id="q4d">
+                        <label for="q4d">d) um projeto conceitual.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="e" id="q4e">
+                        <label for="q4e">e) modelo de entidade-relacionamento.</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback4"></div>
+            </div>
+
+            <!-- Questão 5 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">5</div>
+                    <div class="question-title">Pseudocódigo (Rotinas)</div>
+                </div>
+                <div class="question-text">
+                    Em lógica de programação, quando um bloco de código precisa retornar um valor (como uma contagem), qual estrutura deve ser usada?
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q5" value="a" id="q5a">
+                        <label for="q5a">a) Procedimento com retorno implícito</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="b" id="q5b">
+                        <label for="q5b">b) Função com retorno de valor e finalização com fimfuncao</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="c" id="q5c">
+                        <label for="q5c">c) Método estático sem retorno</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="d" id="q5d">
+                        <label for="q5d">d) Loop com break para retornar</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="e" id="q5e">
+                        <label for="q5e">e) Variável global modificada</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback5"></div>
+            </div>
+
+            <!-- Questão 6 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">6</div>
+                    <div class="question-title">Matrizes e Vetores</div>
+                </div>
+                <div class="question-text">
+                    Um algoritmo foi elaborado para receber dados de quatro pessoas (nome, cidade, e-mail). Para exibir todo o conjunto de informações, o vetor deve ser declarado como:
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q6" value="a" id="q6a">
+                        <label for="q6a">a) pessoas: vetor[12] de caracter.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q6" value="b" id="q6b">
+                        <label for="q6b">b) pessoas: vetor[3][3] de caracter.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q6" value="c" id="q6c">
+                        <label for="q6c">c) pessoas: vetor[3][4] de caracter.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q6" value="d" id="q6d">
+                        <label for="q6d">d) pessoas: vetor[4][3] de caracter.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q6" value="e" id="q6e">
+                        <label for="q6e">e) pessoas: vetor[1][12] de caracter.</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback6"></div>
+            </div>
+
+            <!-- Questão 7 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">7</div>
+                    <div class="question-title">Terceira Forma Normal (3FN)</div>
+                </div>
+                <div class="question-text">
+                    Um DBA constatou que a tabela "Pedido" não estava na terceira forma normal: Pedido (id_pedido, data_pedido, id_produto, nome_produto, quantidade, valor_unitario, subtotal). Após aplicar a 3FN, a tabela deve ficar:
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q7" value="a" id="q7a">
+                        <label for="q7a">a) Pedido (id_pedido, id_produto, quantidade, valor_unitario)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q7" value="b" id="q7b">
+                        <label for="q7b">b) Pedido (id_pedido, nome_produto, quantidade, valor_unitario)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q7" value="c" id="q7c">
+                        <label for="q7c">c) Pedido (id_pedido, id_produto, quantidade, valor_unitario, subtotal)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q7" value="d" id="q7d">
+                        <label for="q7d">d) Pedido (id_pedido, data_pedido, id_produto, quantidade, valor_unitario)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q7" value="e" id="q7e">
+                        <label for="q7e">e) Pedido (id_pedido, data_pedido, id_produto, quantidade, valor_unitario, subtotal)</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback7"></div>
+            </div>
+
+            <!-- Questão 8 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">8</div>
+                    <div class="question-title">Classes Abstratas</div>
+                </div>
+                <div class="question-text">
+                    Dado o código: public abstract class CL { public abstract void metodoME(); }. Para que uma chamada ao metodoME deste código seja realizada, o metodoME deve:
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q8" value="a" id="q8a">
+                        <label for="q8a">a) receber parâmetro.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" value="b" id="q8b">
+                        <label for="q8b">b) ter visibilidade pública.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" value="c" id="q8c">
+                        <label for="q8c">c) ser implementado em uma subclasse CL.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" value="d" id="q8d">
+                        <label for="q8d">d) ser uma função avulsa definida fora do contexto de uma classe.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" value="e" id="q8e">
+                        <label for="q8e">e) ser chamado diretamente, sem uma instância de CL ou de suas subclasses.</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback8"></div>
+            </div>
+
+            <!-- Questão 9 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">9</div>
+                    <div class="question-title">Diagrama de Classes UML</div>
+                </div>
+                <div class="question-text">
+                    Para representar um objeto no diagrama UML a empresa deve utilizar um:
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q9" value="a" id="q9a">
+                        <label for="q9a">a) triângulo.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9" value="b" id="q9b">
+                        <label for="q9b">b) retângulo.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9" value="c" id="q9c">
+                        <label for="q9c">c) paralelogramo.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9" value="d" id="q9d">
+                        <label for="q9d">d) losango sem preenchimento.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9" value="e" id="q9e">
+                        <label for="q9e">e) losango com preenchimento preto.</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback9"></div>
+            </div>
+
+            <!-- Questão 10 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">10</div>
+                    <div class="question-title">Sistemas IoT</div>
+                </div>
+                <div class="question-text">
+                    Está sendo desenvolvido um sistema de automação residencial que usa vários dispositivos IoT. O recurso necessário para o sistema funcionar é:
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q10" value="a" id="q10a">
+                        <label for="q10a">a) um módulo para jogar jogos em rede com os dispositivos IoT.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q10" value="b" id="q10b">
+                        <label for="q10b">b) um programa que exibe gráficos 3D da temperatura ambiente.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q10" value="c" id="q10c">
+                        <label for="q10c">c) um conjunto de funções para enviar e receber dados através da rede.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q10" value="d" id="q10d">
+                        <label for="q10d">d) um algoritmo para encontrar o menor caminho entre dois dispositivos.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q10" value="e" id="q10e">
+                        <label for="q10e">e) uma função para tocar uma música quando uma pessoa ingressa no ambiente.</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback10"></div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-container">
+                <button type="submit" class="submit-btn">
+                    Finalizar Prova 🚀
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="results-modal" id="resultsModal">
+        <div class="results-content">
+            <div class="results-icon">🎉</div>
+            <h2 class="results-title">Prova Finalizada!</h2>
+            <div class="results-stats">
+                <div class="stat-card">
+                    <div class="stat-label">⏱️ Tempo Total</div>
+                    <div class="stat-value" id="finalTime">00:00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">✨ Acertos</div>
+                    <div class="stat-value" id="scoreDisplay">0/10</div>
+                </div>
+            </div>
+            <p style="color: var(--purple-medium); font-size: 1.1em; margin-top: 20px;">
+                Role para cima para ver o feedback detalhado das suas respostas! 💜
+            </p>
+            <button class="retry-btn" onclick="window.location.href='pagina-inicial.html'">
+                Voltar para o Início
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Gabarito e explicações
+        const gabarito = {
+            q1: {
+                correct: 'b',
+                explanation: 'Uma documentação técnica eficiente deve descrever o comportamento do software para facilitar manutenções futuras. Isso inclui as funcionalidades (o que o sistema faz) e o tratamento de erros (como o sistema reage a falhas), garantindo que outros desenvolvedores entendam a lógica completa.'
+            },
+            q2: {
+                correct: 'a',
+                explanation: 'No protocolo MQTT, a ação de enviar uma mensagem de um dispositivo para o servidor (broker) é chamada de PUBLISH. Como o problema identifica que o setor Administrativo (Adm) não está informando os dados, o comando correto deve ser direcionado especificamente a esse tópico.'
+            },
+            q3: {
+                correct: 'e',
+                explanation: 'Para sistemas IoT modernos, utilizam-se linguagens de alto nível (como Python ou C++) que oferecem bibliotecas prontas. Isso permite gerenciar a complexidade da conectividade de rede e protocolos de sensores de forma muito mais rápida do que linguagens de baixo nível (Assembly).'
+            },
+            q4: {
+                correct: 'c',
+                explanation: 'A Análise de Requisitos é a fase inicial de qualquer projeto de software. É nela que se define o "quê" o sistema deve fazer através da coleta de informações com os usuários, servindo de base para todos os modelos técnicos subsequentes.'
+            },
+            q5: {
+                correct: 'b',
+                explanation: 'Em lógica de programação, uma Função é usada quando o código precisa retornar um valor (neste caso, o "inteiro" que representa a contagem). O bloco deve ser iniciado com funcao e finalizado obrigatoriamente com fimfuncao.'
+            },
+            q6: {
+                correct: 'd',
+                explanation: 'São 4 pessoas (linhas da matriz) e cada uma tem 3 dados (colunas: nome, cidade, e-mail). Portanto, a estrutura necessária é uma matriz de 4 por 3.'
+            },
+            q7: {
+                correct: 'd',
+                explanation: 'A 3FN exige a eliminação de campos que dependem de outros campos que não são a chave primária. O nome_produto depende do id_produto (deve estar na tabela de produtos) e o subtotal é um dado calculado (derivado), que não deve ser armazenado para evitar inconsistências.'
+            },
+            q8: {
+                correct: 'c',
+                explanation: 'Métodos abstratos não possuem implementação (corpo) na classe original. Eles funcionam como um molde. Para serem utilizados, uma classe "filha" deve herdar a classe abstrata e escrever o código real para esse método.'
+            },
+            q9: {
+                correct: 'b',
+                explanation: 'Na norma UML, tanto classes quanto objetos (instâncias) são desenhados dentro de retângulos. A diferença visual costuma ser apenas o nome do objeto sublinhado, mas a forma geométrica permanece a mesma.'
+            },
+            q10: {
+                correct: 'c',
+                explanation: 'A base da Internet das Coisas (IoT) é a capacidade de dispositivos físicos se conectarem e trocarem informações. Sem o recurso de transmissão de dados via rede, a automação e o controle remoto tornam-se impossíveis.'
+            }
+        };
+
+        // Cronômetro
+        let startTime = Date.now();
+        let timerInterval;
+
+        function updateTimer() {
+            const elapsed = Date.now() - startTime;
+            const minutes = Math.floor(elapsed / 60000);
+            const seconds = Math.floor((elapsed % 60000) / 1000);
+            document.getElementById('timerDisplay').textContent = 
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        timerInterval = setInterval(updateTimer, 1000);
+
+        // Form submission
+        document.getElementById('provaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            clearInterval(timerInterval);
+
+            let score = 0;
+            const totalQuestions = 10;
+
+            // Verificar cada questão
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionName = 'q' + i;
+                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${i}`);
+                const options = document.querySelectorAll(`input[name="${questionName}"]`);
+
+                if (selectedOption) {
+                    const userAnswer = selectedOption.value;
+                    const correctAnswer = gabarito[questionName].correct;
+                    const isCorrect = userAnswer === correctAnswer;
+
+                    if (isCorrect) {
+                        score++;
+                        feedbackDiv.className = 'feedback correct show';
+                        feedbackDiv.innerHTML = `
+                            <div class="feedback-title">
+                                <span class="feedback-icon">✅</span>
+                                Resposta Correta!
+                            </div>
+                            <div>${gabarito[questionName].explanation}</div>
+                        `;
+                        selectedOption.parentElement.classList.add('correct');
+                    } else {
+                        feedbackDiv.className = 'feedback incorrect show';
+                        feedbackDiv.innerHTML = `
+                            <div class="feedback-title">
+                                <span class="feedback-icon">❌</span>
+                                Resposta Incorreta
+                            </div>
+                            <div><strong>Resposta correta:</strong> Alternativa ${correctAnswer.toUpperCase()}</div>
+                            <div style="margin-top: 10px;"><strong>Explicação:</strong> ${gabarito[questionName].explanation}</div>
+                        `;
+                        selectedOption.parentElement.classList.add('incorrect');
+                        
+                        // Marcar a opção correta
+                        options.forEach(opt => {
+                            if (opt.value === correctAnswer) {
+                                opt.parentElement.classList.add('correct');
+                            }
+                        });
+                    }
+
+                    // Desabilitar todas as opções
+                    options.forEach(opt => {
+                        opt.disabled = true;
+                        opt.parentElement.style.cursor = 'default';
+                    });
+                }
+            }
+
+            // Mostrar resultados
+            const finalTimeDisplay = document.getElementById('timerDisplay').textContent;
+            document.getElementById('finalTime').textContent = finalTimeDisplay;
+            document.getElementById('scoreDisplay').textContent = `${score}/10`;
+            document.getElementById('resultsModal').classList.add('show');
+
+            // Desabilitar botão de submit
+            document.querySelector('.submit-btn').disabled = true;
+
+            // Scroll para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

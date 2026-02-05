@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial - Bem-vindo! 💜</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap">
+    <style>
+        :root {
+            --lilac-soft: #E6D9F2;
+            --lilac-medium: #D4B5F0;
+            --purple-light: #B794E6;
+            --purple-medium: #9B6DD6;
+            --purple-deep: #7B4BC4;
+            --purple-dark: #5A2E94;
+            --white: #FFFFFF;
+            --shadow: rgba(123, 75, 196, 0.15);
+            --shadow-strong: rgba(123, 75, 196, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #E6D9F2 0%, #D4B5F0 25%, #B794E6 50%, #9B6DD6 75%, #7B4BC4 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Floating decorative elements */
+        .decoration {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.25;
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .decoration:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            background: var(--lilac-soft);
+            top: 5%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .decoration:nth-child(2) {
+            width: 140px;
+            height: 140px;
+            background: var(--purple-light);
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .decoration:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            background: var(--purple-medium);
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        .decoration:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            background: var(--lilac-medium);
+            top: 20%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+
+        .decoration:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            background: var(--purple-light);
+            bottom: 30%;
+            right: 35%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-25px) translateX(15px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-15px) translateX(-20px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-30px) translateX(10px) rotate(3deg);
+            }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-deep));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 50px;
+            box-shadow: 0 15px 40px var(--shadow-strong);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 15px 40px var(--shadow-strong);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 20px 50px var(--shadow-strong);
+            }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: var(--purple-deep);
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px var(--shadow);
+        }
+
+        .subtitle {
+            color: var(--purple-medium);
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .user-greeting {
+            color: var(--purple-dark);
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--lilac-soft), var(--purple-light));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .card:hover::before {
+            opacity: 0.1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px var(--shadow-strong);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--purple-medium), var(--purple-deep));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 45px;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 15px 40px var(--shadow-strong);
+        }
+
+        .card-title {
+            font-family: 'Pacifico', cursive;
+            color: var(--purple-deep);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px var(--shadow);
+        }
+
+        .card-description {
+            color: var(--purple-medium);
+            font-size: 1em;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .card-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-medium));
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        /* Prova Saeb Card - Destaque especial */
+        .card.prova-saeb {
+            background: linear-gradient(135deg, rgba(230, 217, 242, 0.98), rgba(212, 181, 240, 0.98));
+            border: 3px solid var(--purple-medium);
+        }
+
+        .card.prova-saeb .card-icon {
+            background: linear-gradient(135deg, var(--purple-deep), var(--purple-dark));
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                box-shadow: 0 10px 30px var(--shadow);
+            }
+            50% {
+                box-shadow: 0 15px 45px var(--shadow-strong), 0 0 20px var(--purple-light);
+            }
+        }
+
+        .card.prova-saeb:hover {
+            border-color: var(--purple-deep);
+            transform: translateY(-15px) scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px 20px;
+            color: var(--purple-medium);
+            font-weight: 500;
+        }
+
+        .footer a {
+            color: var(--purple-deep);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--purple-dark);
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .welcome-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card-title {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Loading animation when redirecting */
+        .redirecting {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(123, 75, 196, 0.9);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .redirecting.active {
+            display: flex;
+        }
+
+        .redirecting-content {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--white);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .redirecting-text {
+            font-size: 1.5em;
+            font-weight: 700;
+            font-family: 'Pacifico', cursive;
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative floating elements -->
+    <div class="decoration"></div>
+    <div class="decoration"></div>
+    <div class="decoration"></div>
+    <div class="decoration"></div>
+    <div class="decoration"></div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="welcome-icon">🌟</div>
+        <h1>Bem-vindo!</h1>
+        <p class="subtitle">Sua jornada de aprendizado começa aqui 💜</p>
+        <div class="user-greeting">
+            <span>Olá, <strong id="userName">Estudante</strong>! 👋</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="cards-grid">
+            <!-- Card Prova Saeb - Destaque -->
+            <div class="card prova-saeb" onclick="acessarProvaSaeb()">
+                <div class="card-content">
+                    <div class="card-icon">📝</div>
+                    <h2 class="card-title">Prova Saeb</h2>
+                    <p class="card-description">
+                        Acesse sua prova e mostre todo seu conhecimento!
+                    </p>
+                    <span class="card-badge">Clique para acessar ✨</span>
+                </div>
+            </div>
+
+            <!-- Card Meu Perfil -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-icon">👤</div>
+                    <h2 class="card-title">Meu Perfil</h2>
+                    <p class="card-description">
+                        Visualize e edite suas informações pessoais
+                    </p>
+                    <span class="card-badge">Em breve 🌸</span>
+                </div>
+            </div>
+
+            <!-- Card Materiais de Estudo -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-icon">📚</div>
+                    <h2 class="card-title">Materiais</h2>
+                    <p class="card-description">
+                        Acesse conteúdos e materiais de apoio
+                    </p>
+                    <span class="card-badge">Em breve 🎯</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Precisa de ajuda? <a href="#">Entre em contato</a> 💌</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Feito com 💜 para você</p>
+    </div>
+
+    <!-- Redirecting overlay -->
+    <div class="redirecting" id="redirecting">
+        <div class="redirecting-content">
+            <div class="spinner"></div>
+            <p class="redirecting-text">Abrindo Prova Saeb... ✨</p>
+        </div>
+    </div>
+
+    <script>
+        // Recupera o nome do usuário do localStorage (se foi salvo no cadastro)
+        window.addEventListener('DOMContentLoaded', function() {
+            const userName = localStorage.getItem('userName');
+            if (userName) {
+                document.getElementById('userName').textContent = userName;
+            }
+        });
+
+        // Função para acessar a Prova Saeb
+        function acessarProvaSaeb() {
+            // Mostra animação de loading
+            document.getElementById('redirecting').classList.add('active');
+            
+            // Aguarda 1 segundo para efeito visual e depois redireciona
+            setTimeout(function() {
+                // Abre a prova na mesma aba
+                window.location.href = 'prova-saeb.html';
+            }, 1000);
+        }
+
+        // Adiciona efeito de partículas ao passar o mouse nas cards
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            });
+        });
+    </script>
+</body>
+</html>
