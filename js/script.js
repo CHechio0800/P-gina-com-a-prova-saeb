@@ -26,7 +26,11 @@ if (form) {
 
         // Redireciona para a página inicial (saeb/index.html)
         setTimeout(() => {
+<<<<<<< HEAD
             window.location.href = '../saeb/pagina-inicial.html';
+=======
+            window.location.href = '../saeb/index.html';
+>>>>>>> 2b4e14b6252cdb2a2aefa902349fadcf2003d68a
         }, 2000);
     });
 }
