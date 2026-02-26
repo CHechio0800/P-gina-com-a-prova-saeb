@@ -25,10 +25,11 @@ if (form) {
         form.reset();
 
         // Redireciona para a página inicial (saeb/index.html)
-        setTimeout(() => {
-            window.location.href = 'pagina-inicial.html';
-            window.location.href = 'index.html';
-        }, 2000);
+
+            setTimeout(() => {
+                window.location.href = 'pagina-inicial.html';
+            }, 2000);
+
     });
 }
 
